@@ -1,0 +1,65 @@
+spring:
+  #profiles defined
+  config:
+    activate:
+      on-profile: prod
+    #database configuration
+  datasource:
+    url: jdbc:mysql://localhost:3306/carbonmail?characterEncoding=utf-8&serverTimezone=GMT%2B8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: Maple@feng7
+  redis:
+    port: 6379
+    host: localhost
+    database: 2
+    password: Maple@feng7
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0
+    timeout: 500
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic
+        requestInterceptors: cn.carbonface.carbonsecurity.core.interceptor.FeignClientInterceptor
+
+#mybatis configuration
+mybatis:
+  #  config-location: classpath:mybatis/mybatis-config.xml
+  configuration:
+    map-underscore-to-camel-case: true
+  typeAliasesPackage: cn.carbonface.carbonmail.entity
+  mapperLocations: classpath:mybatis/mapper/*.xml
+
+logging:
+  config: classpath:log4j/log4j2-info.yml
+#  config: src/main/resources/log4j2-config.xml
+#  level:
+#    cn.jay.repository: trace
+
+#swagger config
+springfox:
+  documentation:
+    swagger-ui:
+      enabled: true
+
+jwt:
+  # secret Key
+  secret: JWTSecret,CarbonFace
+  # HeaderKey
+  tokenHeader: Authorization
+  # Token head
+  tokenPrefix: Bearer
+  # expire time
+  expiration: 86400
+  # refresh time
+  refreshTime: 7
+  # no jwt need filter
+  antMatchers: /login/**,/carbonface/hello/hello
