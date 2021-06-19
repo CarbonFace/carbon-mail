@@ -8,9 +8,10 @@ spring:
     name: Carbon-Mail
 eureka:
   instance:
-    hostname: localhost
+    hostname: carbon-mail
     prefer-ip-address: true
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
   client:
     serviceUrl:
-      defaultZone: http://localhost:8008/eureka/
+#      defaultZone: http://localhost:8008/eureka/
+      defaultZone: http://carbon-eureka:8008/eureka/
