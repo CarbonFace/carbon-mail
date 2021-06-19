@@ -1,7 +1,3 @@
-carbon_cloud:
-  mysql_address:  carbon-mysql
-  redis_address:  carbon-redis
-  mongo_address:  carbon-mongo
 spring:
   #profiles defined
   config:
